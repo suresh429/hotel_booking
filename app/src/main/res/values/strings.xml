@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Hotel Book</string>
+    <string name="upgrade_now">Upgrade Now</string>
+    <string name="later">Later</string>
+    <string name="version_update">Version Update</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="todo">todo</string>
+
+    <string name="login_to_your_account">Login to your account</string>
+    <string name="email_phone_number">Email <font color="#ec1c24">*</font> </string>
+    <string name="password">Password <font color="#ec1c24">*</font> </string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="login_now">Login now</string>
+    <string name="please_wait">Please wait...</string>
+
+    <string name="resendotp">Haven’t received the OTP yet? <font color="#305593"> Resend</font> </string>
+    <string name="verify">Verify</string>
+    <string name="please_verify_your_email_code_sent_to_suraj_touchalife_org">Please verify your Email Code sent to suraj@touchalife.org</string>
+    <string name="verify_your_email">Verify Your Email</string>
+    <string name="close">Close</string>
+    <string name="confirm">confirm</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="pass_rule_head_txt">Create a password that:</string>
+    <!--
+    <string name="pass_rule_cnt_txt">• Contains at least 8 characters\n• Contains both lower (a-z) and upper case letters (A-Z)\n• Contains at least one number (0-9) or a symbol\n• Does not contain your name or email address</string>
+-->
+    <string name="pass_rule_cnt_txt">• Contains at least one letter\n• Contains at least one capital letter\n• Contains at least one digit\n• Contains at least one special character\n• Contains at least 6 characters</string>
+
+    <string name="email_address">Email address <font color="#ec1c24">*</font> </string>
+    <string name="get_otp">Get OTP</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="find_your_best_hotel">Find Your Best Hotel</string>
+    <string name="sign_up">Sign up</string>
+
+
+    <string name="name">Name <font color="#ec1c24">*</font> </string>
+    <string name="last_name">Last Name <font color="#ec1c24">*</font> </string>
+    <string name="phone_number">Phone number<font color="#ec1c24">*</font> </string>
+    <string name="or_you_can_join_with">or you can join with</string>
+    <string name="already_have_an_account">Already have an account</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="login">Login</string>
+</resources>
