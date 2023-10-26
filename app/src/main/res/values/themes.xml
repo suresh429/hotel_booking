@@ -4,7 +4,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/my_light_primary</item>
         <item name="colorPrimaryDark">@color/my_light_primary_dark</item>
-        <item name="colorAccent">@color/my_light_primary</item>
+        <item name="colorAccent">@color/color_accent</item>
         <item name="android:windowBackground">@android:color/white</item>
         <item name="android:textColor">@color/black</item>
 

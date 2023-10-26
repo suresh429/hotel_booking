@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Hotel Book"
+rootProject.name = "Avota"
 include(":app")

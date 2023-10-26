@@ -7,8 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repository: MainRepository,
-    private val preferences: UserPreferences) : ViewModel() {
+class MainViewModel @Inject constructor(private val repository: MainRepository) : ViewModel() {
 
     suspend fun saveUserData(
         userId: String,
@@ -16,7 +15,7 @@ class MainViewModel @Inject constructor(private val repository: MainRepository,
         email: String,
         phone: String,
     ) {
-        preferences.saveUserData(
+        repository.saveUserData(
             userId,
             name,
             email,

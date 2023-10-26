@@ -18,8 +18,8 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="@dimen/logo_size"
-                android:layout_height="@dimen/logo_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/app_icon"
                 android:layout_gravity="center"
                 android:contentDescription="@string/todo" />

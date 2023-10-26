@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Hotel Book</string>
+    <string name="app_name">Avota</string>
     <string name="upgrade_now">Upgrade Now</string>
     <string name="later">Later</string>
     <string name="version_update">Version Update</string>

@@ -206,11 +206,6 @@ class UserPreferences @Inject constructor(@ApplicationContext context: Context) 
         }
     }
 
-    suspend fun saveInrValue(inrValue: Double) {
-        appContext.dataStore.edit { preferences ->
-            preferences[INRPRICE] = inrValue
-        }
-    }
 
     suspend fun saveUserData(
         userId: String,

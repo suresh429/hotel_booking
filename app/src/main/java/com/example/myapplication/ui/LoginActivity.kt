@@ -192,14 +192,14 @@ class LoginActivity : AppCompatActivity() {
 
                                     bottomBinding.progressBar.visibility = View.GONE
 
-                                    if (it.data?.statusCode == 200) {
+                                    if (it.data?.result.equals("success")) {
 
                                         lifecycleScope.launch {
                                             bottomSheetDialog.dismiss()
                                             // OTP verify Screen
                                             otpVerifyDialog(bottomBinding.etEmail.text.toString())
 
-                                            toast(it.data.message)
+                                            toast(it.data?.msg.toString())
                                         }
 
                                     } else {
@@ -208,7 +208,7 @@ class LoginActivity : AppCompatActivity() {
                                              it.data.message,
                                              Snackbar.LENGTH_SHORT
                                          ).show()*/
-                                        toast(it.data?.message.toString())
+                                        toast(it.data?.msg.toString())
                                     }
 
                                 }
@@ -331,16 +331,16 @@ class LoginActivity : AppCompatActivity() {
 
                                 bottomBinding.progressBar.visibility = View.GONE
 
-                                if (it.data?.statusCode == 200) {
+                                if (it.data?.result.equals("success")) {
 
                                     lifecycleScope.launch {
-                                        toast(it.data.message)
+                                        toast(it.data?.msg.toString())
                                     }
 
                                 } else {
                                     Snackbar.make(
                                         binding.root,
-                                        it.data?.message.toString(),
+                                        it.data?.msg.toString(),
                                         Snackbar.LENGTH_SHORT
                                     ).show()
                                 }

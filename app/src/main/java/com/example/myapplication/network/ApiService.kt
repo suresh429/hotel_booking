@@ -35,7 +35,7 @@ interface ApiService {
         @Field("device_id") deviceId: String,
         @Field("app_version") appVersion: String,
         @Field("os") os: String
-    ): Response<LoginResponse>
+    ): Response<RegistrationResponse>
 
 
     @POST("forgotpassword")

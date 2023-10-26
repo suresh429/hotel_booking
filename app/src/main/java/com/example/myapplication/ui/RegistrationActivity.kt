@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.myapplication.databinding.ActivityRegistrationBinding
+import com.example.myapplication.model.RegistrationResponse
 import com.example.myapplication.network.ApiState
 import com.example.myapplication.utils.appVersion
 import com.example.myapplication.utils.deviceId
@@ -59,11 +60,11 @@ class RegistrationActivity : AppCompatActivity() {
 
                             when (it) {
                                 is ApiState.Success -> {
-                                    if (it.data?.result.equals("success")) {
+                                    if (it.data?.result.equals("success") && it.data?.data is RegistrationResponse.Data) {
 
                                         lifecycleScope.launch {
                                             // startClearActivity(HomeActivity::class.java)
-                                            toast(it.data?.msg.toString())
+                                            toast(it.data.msg)
                                             //verifyEmail(it.data.data.email)
                                         }
 
@@ -104,7 +105,6 @@ class RegistrationActivity : AppCompatActivity() {
         binding.txtLogin.setOnClickListener {
             startNewActivity(LoginActivity::class.java)
         }
-
 
     }
 
@@ -164,9 +164,6 @@ class RegistrationActivity : AppCompatActivity() {
         }
         return true
     }
-
-
-
 
 
     override fun onDestroy() {
