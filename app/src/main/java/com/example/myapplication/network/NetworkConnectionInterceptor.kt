@@ -1,4 +1,5 @@
-package com.touchalife.talhospitals.data.network
+package com.example.myapplication.network
+
 
 import android.annotation.SuppressLint
 import android.content.Context

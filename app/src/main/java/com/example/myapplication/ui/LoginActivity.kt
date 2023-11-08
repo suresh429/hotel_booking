@@ -30,6 +30,7 @@ import com.example.myapplication.utils.deviceId
 import com.example.myapplication.utils.emailPattern
 import com.example.myapplication.utils.hideKeyboard
 import com.example.myapplication.utils.os
+import com.example.myapplication.utils.snackBar
 import com.example.myapplication.utils.startClearActivity
 import com.example.myapplication.utils.startNewActivity
 import com.example.myapplication.utils.toast
@@ -47,6 +48,7 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewModels by viewModels<MainViewModel>()
+
     // private var bottomSheetDialog: BottomSheetDialog? = null
     private lateinit var bottomSheetDialog: BottomSheetDialog
 
@@ -60,57 +62,50 @@ class LoginActivity : AppCompatActivity() {
 
         // Login
         binding.btnLogin.setOnClickListener {
-         //   if (validLogin()) {
+            //   if (validLogin()) {
 
-                lifecycleScope.launch {
-                    lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                        viewModels.getLogin(
-                            binding.etEmail.text.toString(),
-                            binding.etPassword.text.toString(),
-                            deviceId(applicationContext),
-                            appVersion,
-                            os
-                        ).collect {
-                            when (it) {
-                                is ApiState.Success -> {
-                                    if (it.data?.result.equals("success")) {
+            lifecycleScope.launch {
+                viewModels.getLogin(
+                    binding.etEmail.text.toString(),
+                    binding.etPassword.text.toString(),
+                    deviceId(applicationContext),
+                    appVersion,
+                    os
+                ).collect {
+                    when (it) {
+                        is ApiState.Success -> {
+                            if (it.data?.result.equals("success")) {
 
-                                        lifecycleScope.launch {
-                                            viewModels.saveUserData(it.data?.data?.uid.toString(),it.data?.data?.name.toString(),it.data?.data?.email.toString(),it.data?.data?.phone_no.toString())
-                                            startClearActivity(HomeActivity::class.java)
-                                            toast(it.data?.msg.toString())
-                                        }
-
-                                    } else {
-                                        Snackbar.make(
-                                            binding.root,
-                                            it.data?.msg.toString(),
-                                            Snackbar.LENGTH_SHORT
-                                        ).show()
-                                    }
-
-                                    dismissLoading()
+                                lifecycleScope.launch {
+                                    viewModels.saveUserData(
+                                        it.data?.data?.uid.toString(),
+                                        it.data?.data?.name.toString(),
+                                        it.data?.data?.email.toString(),
+                                        it.data?.data?.phone_no.toString()
+                                    )
+                                    startClearActivity(HomeActivity::class.java)
+                                    toast(it.data?.msg.toString())
                                 }
 
-                                is ApiState.Failure -> {
-                                    Snackbar.make(
-                                        binding.root,
-                                        it.message,
-                                        Snackbar.LENGTH_SHORT
-                                    ).show()
-
-                                    dismissLoading()
-                                }
-
-                                ApiState.Loading -> {
-                                    showLoading()
-                                }
-
-
+                            } else {
+                                binding.root.snackBar(it.data?.msg.toString())
                             }
+
+                            dismissLoading()
+                        }
+
+                        is ApiState.Failure -> {
+                            binding.root.snackBar(it.message)
+                            dismissLoading()
+                        }
+
+                        ApiState.Loading -> {
+                            showLoading()
                         }
                     }
                 }
+
+            }
 
             //}
             hideKeyboard()
@@ -166,56 +161,56 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 bottomBinding.inputEmail.error = null
                 lifecycleScope.launch {
-                    lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                        viewModels.resetPassword(bottomBinding.etEmail.text.toString()).collect { it ->
-                            when (it) {
 
-                                is ApiState.Loading -> {
-                                    bottomBinding.progressBar.visibility = View.VISIBLE
-                                }
+                    viewModels.resetPassword(bottomBinding.etEmail.text.toString()).collect { it ->
+                        when (it) {
 
-                                is ApiState.Failure -> {
+                            is ApiState.Loading -> {
+                                bottomBinding.progressBar.visibility = View.VISIBLE
+                            }
 
-                                    bottomBinding.progressBar.visibility = View.GONE
+                            is ApiState.Failure -> {
 
-                                    /* Snackbar.make(
-                                         binding.root,
-                                         it.exception,
-                                         Snackbar.LENGTH_SHORT
-                                     ).show()*/
+                                bottomBinding.progressBar.visibility = View.GONE
 
-                                    toast(it.message)
+                                /* Snackbar.make(
+                                     binding.root,
+                                     it.exception,
+                                     Snackbar.LENGTH_SHORT
+                                 ).show()*/
 
-                                }
+                                toast(it.message)
 
-                                is ApiState.Success -> {
+                            }
 
-                                    bottomBinding.progressBar.visibility = View.GONE
+                            is ApiState.Success -> {
 
-                                    if (it.data?.result.equals("success")) {
+                                bottomBinding.progressBar.visibility = View.GONE
 
-                                        lifecycleScope.launch {
-                                            bottomSheetDialog.dismiss()
-                                            // OTP verify Screen
-                                            otpVerifyDialog(bottomBinding.etEmail.text.toString())
+                                if (it.data?.result.equals("success")) {
 
-                                            toast(it.data?.msg.toString())
-                                        }
+                                    lifecycleScope.launch {
+                                        bottomSheetDialog.dismiss()
+                                        // OTP verify Screen
+                                        otpVerifyDialog(bottomBinding.etEmail.text.toString())
 
-                                    } else {
-                                        /* Snackbar.make(
-                                             binding.root,
-                                             it.data.message,
-                                             Snackbar.LENGTH_SHORT
-                                         ).show()*/
                                         toast(it.data?.msg.toString())
                                     }
 
+                                } else {
+                                    /* Snackbar.make(
+                                         binding.root,
+                                         it.data.message,
+                                         Snackbar.LENGTH_SHORT
+                                     ).show()*/
+                                    toast(it.data?.msg.toString())
                                 }
+
                             }
                         }
                     }
                 }
+
             }
 
         }
@@ -357,59 +352,59 @@ class LoginActivity : AppCompatActivity() {
             if (validPassword(bottomBinding.inputChangePassword, bottomBinding.etChangePassword)) {
                 bottomBinding.inputChangePassword.error = null
                 lifecycleScope.launch {
-                    lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
-                        viewModels.changePassword(
-                            email,
-                            bottomBinding.etChangePassword.text.toString(),
-                            bottomBinding.etOtp.text.toString()
-                        ).collect { it ->
-                            when (it) {
 
-                                is ApiState.Loading -> {
-                                    bottomBinding.progressBar.visibility = View.VISIBLE
-                                }
+                    viewModels.changePassword(
+                        email,
+                        bottomBinding.etChangePassword.text.toString(),
+                        bottomBinding.etOtp.text.toString()
+                    ).collect { it ->
+                        when (it) {
 
-                                is ApiState.Failure -> {
+                            is ApiState.Loading -> {
+                                bottomBinding.progressBar.visibility = View.VISIBLE
+                            }
 
-                                    bottomBinding.progressBar.visibility = View.GONE
+                            is ApiState.Failure -> {
 
-
-                                    Snackbar.make(
-                                        binding.root,
-                                        it.message,
-                                        Snackbar.LENGTH_SHORT
-                                    ).show()
-
-                                    bottomBinding.inputOtp.error = it.message
+                                bottomBinding.progressBar.visibility = View.GONE
 
 
-                                }
+                                Snackbar.make(
+                                    binding.root,
+                                    it.message,
+                                    Snackbar.LENGTH_SHORT
+                                ).show()
 
-                                is ApiState.Success -> {
+                                bottomBinding.inputOtp.error = it.message
 
-                                    bottomBinding.progressBar.visibility = View.GONE
 
-                                    if (it.data?.statusCode == 200) {
+                            }
 
-                                        bottomSheetDialog.dismiss()
+                            is ApiState.Success -> {
 
-                                        lifecycleScope.launch {
-                                            startClearActivity(HomeActivity::class.java)
-                                            // toast("SignIn Successfully")
-                                        }
+                                bottomBinding.progressBar.visibility = View.GONE
 
-                                    } else {
-                                        Snackbar.make(
-                                            binding.root,
-                                            it.data?.message.toString(),
-                                            Snackbar.LENGTH_SHORT
-                                        ).show()
+                                if (it.data?.statusCode == 200) {
+
+                                    bottomSheetDialog.dismiss()
+
+                                    lifecycleScope.launch {
+                                        startClearActivity(HomeActivity::class.java)
+                                        // toast("SignIn Successfully")
                                     }
 
+                                } else {
+                                    Snackbar.make(
+                                        binding.root,
+                                        it.data?.message.toString(),
+                                        Snackbar.LENGTH_SHORT
+                                    ).show()
                                 }
+
                             }
                         }
                     }
+
                 }
             } else {
                 bottomBinding.inputOtp.error = "Enter 6 Digit Code"

@@ -5,7 +5,6 @@ import com.example.myapplication.network.result
 import com.example.myapplication.utils.UserPreferences
 import com.example.myapplication.utils.sourceOfCreation
 import com.google.gson.JsonObject
-import retrofit2.http.Field
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val api: ApiService,
@@ -91,6 +90,17 @@ class MainRepository @Inject constructor(private val api: ApiService,
         jsonObject.addProperty("password", password)
         jsonObject.addProperty("otp", otp)
         api.changePassword(jsonObject)
+    }
+
+
+    // get cities
+    fun getCities(userAppKey: String?, isLaunched: String?, isPopular: String?) = result {
+        // json raw Data
+        /*val jsonObject = JsonObject()
+        jsonObject.addProperty("user_app_key", userAppKey)
+        jsonObject.addProperty("is_launched", isLaunched)
+        jsonObject.addProperty("is_popular", isPopular)*/
+        api.getCities(userAppKey,isLaunched,isPopular)
     }
 
 }

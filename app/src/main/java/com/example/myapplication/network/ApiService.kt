@@ -1,6 +1,7 @@
 package com.example.myapplication.network
 
 import com.example.myapplication.di.AppModule.USER_APP_KEY
+import com.example.myapplication.model.CitiesResponse
 import com.example.myapplication.model.LoginResponse
 import com.example.myapplication.model.RegistrationResponse
 import com.example.myapplication.model.VerifyOtpResponse
@@ -58,5 +59,12 @@ interface ApiService {
         @Body jsonObject: JsonObject,
     ): Response<VerifyOtpResponse>
 
+    @FormUrlEncoded
+    @POST("api_hotel_user/getCities")
+    suspend fun getCities(
+        @Field("user_app_key") userAppKey: String?,
+        @Field("is_launched") isLaunched: String?,
+        @Field("is_popular") isPopular: String?,
+    ): Response<CitiesResponse>
 
 }

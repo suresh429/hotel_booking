@@ -87,7 +87,10 @@ fun <A : Activity> Activity.startNewActivity(activity: Class<A>) {
     }
 }
 
-
+fun View.snackBar(message: String?) {
+    val snackBar = Snackbar.make(this, message.toString(), Snackbar.LENGTH_LONG)
+    snackBar.show()
+}
 fun Context.toast(message: CharSequence) =
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 

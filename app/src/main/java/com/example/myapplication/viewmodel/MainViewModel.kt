@@ -50,4 +50,7 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
     // changePassword
     fun changePassword(email: String?, password: String?, otp: String?) = repository.getChangePassword(email, password, otp)
 
+    // getCities
+    fun getCities(userAppKey: String?, isLaunched: String?, isPopular: String?) = repository.getCities(userAppKey,isLaunched,isPopular)
+
 }
