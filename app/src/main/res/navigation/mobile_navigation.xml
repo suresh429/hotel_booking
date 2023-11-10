@@ -7,19 +7,34 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.myapplication.ui.ui.home.HomeFragment"
+        android:name="com.example.myapplication.ui.fragments.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/action_navigation_home_to_locationDialogFragment"
+            app:destination="@id/locationDialogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.myapplication.ui.ui.dashboard.DashboardFragment"
+        android:name="com.example.myapplication.ui.fragments.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.myapplication.ui.ui.notifications.NotificationsFragment"
+        android:name="com.example.myapplication.ui.fragments.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
+    <dialog
+        android:id="@+id/locationDialogFragment"
+        android:name="com.example.myapplication.ui.fragments.LocationDialogFragment"
+        android:label="fragment_location_dialog"
+        tools:layout="@layout/fragment_location_dialog" >
+        <action
+            android:id="@+id/action_locationDialogFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </dialog>
+
 </navigation>

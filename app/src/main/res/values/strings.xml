@@ -44,4 +44,7 @@
     <string name="create_an_account">Create an Account</string>
     <string name="login">Login</string>
     <string name="spinner">spinner</string>
+    <string name="_1_room_2_adults_amp_0_children"><![CDATA[1 Room, 2 Adults & 0 Children]]></string>
+    <string name="search">Search</string>
+    <string name="search_location">Search Location</string>
 </resources>

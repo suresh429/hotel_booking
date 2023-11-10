@@ -5,7 +5,7 @@ import androidx.annotation.Keep
 
 @Keep
 data class CitiesResponse(
-    val `data`: List<Data>,
+    val `data`: ArrayList<Data>,
     val msg: String,
     val result: String
 ) {
