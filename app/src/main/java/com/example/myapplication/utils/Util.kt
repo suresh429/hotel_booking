@@ -35,6 +35,7 @@ import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
@@ -66,6 +67,14 @@ fun validate(password: String?): Boolean {
     return matcher!!.matches()
 }
 
+fun customChromeTab(uri: String, context: Context) {
+    // initializing object for custom chrome tabs.
+    val customIntent = CustomTabsIntent.Builder()
+    val customTabsIntent = customIntent.build()
+    customTabsIntent.intent.setPackage(CHROME_PACKAGE_NAME)
+    customTabsIntent.launchUrl(context, Uri.parse(uri))
+
+}
 
 @SuppressLint("HardwareIds")
 fun deviceId(context: Context): String {

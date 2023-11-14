@@ -28,7 +28,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField("String", BASE_URL, "\"https://obohotels.com/business_new/services_api/\"")
+            buildConfigField("String", BASE_URL, "\"https://avoota.in/welcome/services_api/\"")
         }
         debug {
             isMinifyEnabled = false
@@ -37,7 +37,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField ("String", BASE_URL, "\"https://obohotels.com/business_new/services_api/\"")
+            buildConfigField ("String", BASE_URL, "\"https://avoota.in/welcome/services_api/\"")
         }
     }
 
@@ -70,6 +70,7 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.recyclerview:recyclerview:1.4.0-alpha01")
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.browser:browser:1.6.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

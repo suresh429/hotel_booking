@@ -47,4 +47,9 @@
     <string name="_1_room_2_adults_amp_0_children"><![CDATA[1 Room, 2 Adults & 0 Children]]></string>
     <string name="search">Search</string>
     <string name="search_location">Search Location</string>
+
+    <string name="terms_amp_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="about_us">About Us</string>
+    <string name="policies">Privacy Policy</string>
+    <string name="logout">Logout</string>
 </resources>
