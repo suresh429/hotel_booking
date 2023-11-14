@@ -7,13 +7,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.databinding.ActivitySplashBinding
 import com.example.myapplication.model.HomeDataResponse
 import com.example.myapplication.model.MenuModel
 import com.example.myapplication.ui.adapter.HomeAdapter
 import com.example.myapplication.ui.adapter.MenuListAdapter
 import com.example.myapplication.utils.UserPreferences
-import com.example.myapplication.utils.customChromeTab
 import com.example.myapplication.utils.startClearActivity
 import com.example.myapplication.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
