@@ -1,101 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.HomeFragment">
+    tools:context=".ui.fragments.HomeFragment"
+    android:background="#5BE5E5E5">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtSearchLocation"
+        <RelativeLayout
+            android:id="@+id/topLayout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:text="@string/app_name"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:background="@drawable/layout_bg"
-            android:drawablePadding="10dp"
-            app:drawableStartCompat="@drawable/action_search"
-            app:drawableTint="@color/black" />
+            android:layout_height="200dp">
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:weightSum="2">
+            <ImageView
+                android:id="@+id/imgBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/todo"
+                android:foreground="@color/transperent_black"
+                android:scaleType="centerCrop"
+                android:src="@drawable/home_banner" />
 
             <TextView
-                android:id="@+id/txtCheckIn"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:text="@string/app_name"
-                android:padding="10dp"
-                android:background="@drawable/layout_bg"
-                android:drawablePadding="10dp"
-                app:drawableStartCompat="@drawable/action_calendar_check"
-                app:drawableTint="@color/black"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"
-               />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:lineSpacingExtra="3dp"
+                android:text="@string/where_do_n_you_want_to_stay"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtCheckOut"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_vertical"
-                android:text="@string/app_name"
-                android:padding="10dp"
-                android:background="@drawable/layout_bg"
-                android:drawablePadding="10dp"
-                app:drawableStartCompat="@drawable/action_calendar_check"
-                app:drawableTint="@color/black"
-                android:layout_weight="1"
-                android:layout_marginStart="5dp"
-               />
-        </LinearLayout>
+        </RelativeLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/topLayout"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-60dp"
+            android:layout_marginEnd="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="1dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+
+                <TextView
+                    android:id="@+id/txtSearchLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_bg"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/app_name"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/action_search"
+                    app:drawableTint="@color/black" />
+
+
+                <LinearLayout
+                    android:id="@+id/layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        android:id="@+id/txtCheckIn"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_bg"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="@string/checkin"
+                        app:drawableStartCompat="@drawable/action_calendar_check"
+                        app:drawableTint="@color/black" />
+
+                    <TextView
+                        android:id="@+id/txtCheckOut"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/layout_bg"
+                        android:drawablePadding="10dp"
+                        android:gravity="center_vertical"
+                        android:padding="10dp"
+                        android:text="@string/checkout"
+                        app:drawableStartCompat="@drawable/action_calendar_check"
+                        app:drawableTint="@color/black" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/layout_bg"
+                    android:drawablePadding="10dp"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/_1_room_2_adults_amp_0_children"
+                    android:textStyle="bold"
+                    app:drawableStartCompat="@drawable/action_user"
+                    app:drawableTint="@color/black" />
+
+                <Button
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="@color/color_accent"
+                    android:padding="10dp"
+                    android:text="@string/search"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
+            android:id="@+id/txtHotels"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:text="@string/_1_room_2_adults_amp_0_children"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:background="@drawable/layout_bg"
-            android:drawablePadding="10dp"
-            app:drawableStartCompat="@drawable/action_user"
-            app:drawableTint="@color/black"
-            android:layout_marginTop="10dp"/>
-
-        <Button
-            style="@style/Widget.MaterialComponents.Button"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cardView"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:text="@string/recommended_hotels"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendedRecyleList"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/search"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
-            android:backgroundTint="@color/color_accent"/>
-
-    </LinearLayout>
-
-    <include
-        android:id="@+id/progress_bar"
-        layout="@layout/custom_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
-</RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@id/txtHotels"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="8"
+            tools:listitem= "@layout/card_layout" />
+        <include
+            android:id="@+id/progress_bar"
+            layout="@layout/custom_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>

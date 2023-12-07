@@ -52,4 +52,9 @@
     <string name="about_us">About Us</string>
     <string name="policies">Privacy Policy</string>
     <string name="logout">Logout</string>
+    <string name="where_do_n_you_want_to_stay">Where do \nyou want to stay ?</string>
+    <string name="checkin">Check-In</string>
+    <string name="checkout">Check-out</string>
+    <string name="user">user</string>
+    <string name="recommended_hotels">Recommended Hotels</string>
 </resources>

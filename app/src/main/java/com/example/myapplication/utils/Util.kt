@@ -308,6 +308,12 @@ fun timeMillisToDate(date: Long): String {
     val simpleDateFormat = SimpleDateFormat("dd-MMM-yyyy hh:mm a")
     return simpleDateFormat.format(date)
 }
+ fun covertTimeToDate(date: Long): String {
+    val simpleDateFormat = SimpleDateFormat("dd-MM-yyyy")
+    val dateString = simpleDateFormat.format(date)
+    return String.format("%s", dateString)
+}
+
 
 @SuppressLint("SimpleDateFormat")
 fun gMeetTimeMillisToDate(date: Long): String {

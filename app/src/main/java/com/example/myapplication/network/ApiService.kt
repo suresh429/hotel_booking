@@ -17,7 +17,7 @@ interface ApiService {
 
 
     @FormUrlEncoded
-    @POST("api_user/signIn")
+    @POST("signIn")
     suspend fun login(
         @Field("username") username: String,
         @Field("password") password: String,
@@ -27,7 +27,7 @@ interface ApiService {
     ): Response<LoginResponse>
 
     @FormUrlEncoded
-    @POST("api_user/signUp")
+    @POST("signUp")
     suspend fun signUp(
         @Field("name") name: String,
         @Field("mobile_no") mobileNo: String,
@@ -60,7 +60,7 @@ interface ApiService {
     ): Response<VerifyOtpResponse>
 
     @FormUrlEncoded
-    @POST("api_hotel_user/getCities")
+    @POST("getCities")
     suspend fun getCities(
         @Field("user_app_key") userAppKey: String?,
         @Field("is_launched") isLaunched: String?,

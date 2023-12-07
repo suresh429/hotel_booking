@@ -24,8 +24,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-   // var USER_APP_KEY: String = "YWGYW213FDY273TUWWGSASHAS66GV7DFWQML"
-    const val  USER_APP_KEY: String = "YDGFYEGFY872345dUWSFDUW732dxvetwfJUFEGY"
+    const val  USER_APP_KEY: String = "YWGYW213FDY273TUWWGSASHAS66GV7DFWQML"
 
     @Provides
     fun providesUrl() = BuildConfig.BASE_URL

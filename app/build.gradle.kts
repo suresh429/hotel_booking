@@ -28,7 +28,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField("String", BASE_URL, "\"https://avoota.in/welcome/services_api/\"")
+            buildConfigField("String", BASE_URL, "\"https://obostays.com/testdemo2/api_hotel_user/\"")
         }
         debug {
             isMinifyEnabled = false
@@ -37,7 +37,7 @@ android {
                 "proguard-rules.pro"
             )
 
-            buildConfigField ("String", BASE_URL, "\"https://avoota.in/welcome/services_api/\"")
+            buildConfigField ("String", BASE_URL, "\"https://obostays.com/testdemo2/api_hotel_user/\"")
         }
     }
 

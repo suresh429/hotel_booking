@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.myapplication.databinding.CardLayoutBinding
 import com.example.myapplication.model.HomeDataResponse
 import java.util.LinkedList
@@ -32,7 +33,7 @@ class HomeAdapter(
 
         itemViewHolder.viewBinding.apply {
             txtTitle.text = homeList[position].name
-            imageView.setImageResource(homeList[position].image)
+            imageView.load(homeList[position].url)
             cardView.setOnClickListener{
                 onItemClick?.invoke(position,homeList[position])
             }

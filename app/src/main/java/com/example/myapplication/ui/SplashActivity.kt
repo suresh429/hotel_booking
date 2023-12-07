@@ -57,7 +57,7 @@ class SplashActivity : AppCompatActivity() {
 
     private fun navigation() {
         userPreferences.userId.asLiveData().observe(this) {
-            val activity = if (it == null) MainActivity::class.java else MainActivity::class.java
+            val activity = if (it == null) HomeActivity::class.java else HomeActivity::class.java
             startClearActivity(activity)
         }
     }
