@@ -10,4 +10,5 @@ var os = "1"
 var BEARER = "Bearer "
 var emailPattern = "[a-zA-Z0-9._-]+@[a-z0-9]+\\.+[a-z]+".toRegex()
 const val CHROME_PACKAGE_NAME = "com.android.chrome"
+var LIMIT = 5
 

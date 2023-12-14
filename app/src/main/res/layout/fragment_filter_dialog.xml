@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:numberpicker="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_shape"
+    tools:context=".ui.fragments.LocationDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_shape"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <View
+            android:layout_width="50dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/layout_bg"
+            android:backgroundTint="@color/greyColor" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:text="@string/adults" />
+
+            <com.travijuu.numberpicker.library.NumberPicker
+                android:id="@+id/numberPickerAdults"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                numberpicker:focusable="false"
+                numberpicker:max="10"
+                numberpicker:min="1"
+                numberpicker:unit="1"
+                numberpicker:value="-5"
+                numberpicker:custom_layout="@layout/number_picker_custom_layout"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/layout_bg"
+            android:backgroundTint="@color/greyColor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:text="@string/children" />
+
+            <com.travijuu.numberpicker.library.NumberPicker
+                android:id="@+id/numberPickerChild"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                numberpicker:focusable="false"
+                numberpicker:max="10"
+                numberpicker:min="0"
+                numberpicker:unit="1"
+                numberpicker:value="-5"
+                numberpicker:custom_layout="@layout/number_picker_custom_layout"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/layout_bg"
+            android:backgroundTint="@color/greyColor" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textSize="16sp"
+                android:text="@string/rooms" />
+
+            <com.travijuu.numberpicker.library.NumberPicker
+                android:id="@+id/numberPickerRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                numberpicker:focusable="false"
+                numberpicker:max="10"
+                numberpicker:min="1"
+                numberpicker:unit="1"
+                numberpicker:value="-5"
+                numberpicker:custom_layout="@layout/number_picker_custom_layout"/>
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/btnDone"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:backgroundTint="@color/color_accent"
+            android:padding="10dp"
+            android:textStyle="bold"
+            android:text="@string/done"
+            android:layout_marginTop="30dp"/>
+
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

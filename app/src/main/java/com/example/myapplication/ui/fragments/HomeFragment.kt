@@ -1,6 +1,8 @@
 package com.example.myapplication.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,8 +18,11 @@ import com.example.myapplication.databinding.FragmentHomeBinding
 import com.example.myapplication.di.AppModule
 import com.example.myapplication.model.HomeDataResponse
 import com.example.myapplication.network.ApiState
+import com.example.myapplication.ui.HotelListActivity
 import com.example.myapplication.ui.adapter.HomeAdapter
 import com.example.myapplication.utils.covertTimeToDate
+import com.example.myapplication.utils.startNewActivity
+import com.example.myapplication.utils.toast
 import com.example.myapplication.viewmodel.ConstantViewModel
 import com.example.myapplication.viewmodel.MainViewModel
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -31,7 +36,6 @@ class HomeFragment : Fragment() {
     private val viewModels by viewModels<MainViewModel>()
     private lateinit var binding: FragmentHomeBinding
     private lateinit var locationViewModel: ConstantViewModel
-    private var recommendedArray: LinkedList<HomeDataResponse> = LinkedList<HomeDataResponse>()
     private var adapter: HomeAdapter? = null
 
     override fun onCreateView(
@@ -44,39 +48,120 @@ class HomeFragment : Fragment() {
 
         // city name
         val cityName = arguments?.getString("cityName") ?: "Hyderabad"
+        val cityId = arguments?.getString("cityId") ?: "3"
+        val adultCount = arguments?.getString("adultCount") ?: "1"
+        val childCount = arguments?.getString("childCount") ?: "0"
+        val roomCount = arguments?.getString("roomCount") ?: "1"
+        val checkIn = arguments?.getString("checkIn")?:""
+        val checkOut = arguments?.getString("checkOut")?:""
+
         binding.txtSearchLocation.text = cityName
+
+        "$roomCount Room, $adultCount Adults & $childCount Children".also { binding.txtFilter.text = it }
+
+        binding.txtCheckIn.text = checkIn
+        binding.txtCheckOut.text = checkOut
+
         binding.txtSearchLocation.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_home_to_locationDialogFragment)
+            val bundle = Bundle()
+            bundle.putString("adultCount", adultCount)
+            bundle.putString("childCount", childCount)
+            bundle.putString("roomCount", roomCount)
+            bundle.putString("checkIn", binding.txtCheckIn.text.toString())
+            bundle.putString("checkOut", binding.txtCheckOut.text.toString())
+            findNavController().navigate(R.id.action_navigation_home_to_locationDialogFragment,bundle)
         }
 
         binding.layout.setOnClickListener {
            rangePicker()
         }
+
+        binding.txtFilter.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("cityName", cityName)
+            bundle.putString("cityId", cityId)
+            bundle.putString("checkIn", binding.txtCheckIn.text.toString())
+            bundle.putString("checkOut", binding.txtCheckOut.text.toString())
+            findNavController().navigate(
+                R.id.action_navigation_home_to_filterDialogFragment,bundle
+            )
+        }
+
+        binding.btnSearch.setOnClickListener {
+            if (!binding.txtSearchLocation.text.isNullOrEmpty() && !binding.txtCheckIn.text.isNullOrEmpty() && !binding.txtCheckOut.text.isNullOrEmpty() && !binding.txtFilter.text.isNullOrEmpty()) {
+                val intent = Intent(requireActivity(), HotelListActivity::class.java)
+                intent.putExtra("cityId", cityId)
+                intent.putExtra("checkInDate", binding.txtCheckIn.text.toString())
+                intent.putExtra("checkOutDate", binding.txtCheckOut.text.toString())
+                intent.putExtra("adultCount", adultCount)
+                intent.putExtra("childCount", childCount)
+                intent.putExtra("roomCount", roomCount)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                startActivity(intent)
+            }else {
+                requireActivity().toast("Please Enter All Fields")
+            }
+        }
+
+
         getCities()
-        getHotels()
+        getRecommendedHotels()
         return binding.root
     }
 
-    private fun getHotels(){
-        recommendedArray.add(HomeDataResponse("Star Hotel",R.drawable.airplane,"https://cdn.pixabay.com/photo/2020/05/09/09/13/house-5148865_1280.jpg"))
-        recommendedArray.add(HomeDataResponse("Sea Stay Hotel",R.drawable.hotel,"https://cdn.pixabay.com/photo/2022/10/23/02/26/hotel-7540353_640.jpg"))
-        recommendedArray.add(HomeDataResponse("Pam Beach Hotel ",R.drawable.bus,"https://cdn.pixabay.com/photo/2017/06/11/12/33/swimming-2392283_640.jpg"))
-        recommendedArray.add(HomeDataResponse("The Westin",R.drawable.holiday,"https://cdn.pixabay.com/photo/2016/08/26/20/30/hotel-1623064_640.jpg"))
-        recommendedArray.add(HomeDataResponse("Park Hyatt",R.drawable.holiday,"https://cdn.pixabay.com/photo/2017/08/06/14/56/people-2593251_640.jpg"))
-        recommendedArray.add(HomeDataResponse("Trident Hotel",R.drawable.holiday,"https://cdn.pixabay.com/photo/2017/05/31/10/23/manor-house-2359884_640.jpg"))
-        adapter = HomeAdapter(recommendedArray)
-        binding.recommendedRecyleList.adapter = adapter
-        adapter?.onItemClick = { _, data ->
-            /*val intent = Intent(this, WebActivity::class.java)
-            //Create the bundle
-            val bundle = Bundle()
-            bundle.putString("title", data.name)
-            //bundle.putString("endPoint", BuildConfig.CHAT_BOAT_BASE_URL)
-            bundle.putString("endPoint", data.url)
-            intent.putExtras(bundle)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)*/
+    private fun getRecommendedHotels(){
+
+        lifecycleScope.launch {
+            viewModels.getRecommendedHotels(
+                AppModule.USER_APP_KEY,
+                "1",
+            ).collect {
+                when (it) {
+                    is ApiState.Success -> {
+                        if (it.data?.result.equals("success")) {
+                            // Populate city data and notify the Spinner to update
+
+                            adapter = it.data?.data?.let { it1 -> HomeAdapter(it1) }
+                            binding.recommendedRecyleList.adapter = adapter
+                            adapter?.onItemClick = { _, data ->
+                                /*val intent = Intent(this, WebActivity::class.java)
+                                //Create the bundle
+                                val bundle = Bundle()
+                                bundle.putString("title", data.name)
+                                //bundle.putString("endPoint", BuildConfig.CHAT_BOAT_BASE_URL)
+                                bundle.putString("endPoint", data.url)
+                                intent.putExtras(bundle)
+                                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                                startActivity(intent)*/
+                            }
+
+                        } else {
+                            Snackbar.make(
+                                binding.root,
+                                it.data?.msg.toString(),
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
+                        dismissLoading()
+                    }
+
+                    is ApiState.Failure -> {
+                        Snackbar.make(
+                            binding.root,
+                            it.message,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                        dismissLoading()
+                    }
+
+                    ApiState.Loading -> {
+                        showLoading()
+                    }
+                }
+            }
         }
+
+
     }
 
     private fun rangePicker(){

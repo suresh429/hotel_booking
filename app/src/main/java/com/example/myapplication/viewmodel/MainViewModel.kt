@@ -53,4 +53,7 @@ class MainViewModel @Inject constructor(private val repository: MainRepository) 
     // getCities
     fun getCities(userAppKey: String?, isLaunched: String?, isPopular: String?) = repository.getCities(userAppKey,isLaunched,isPopular)
 
+    // getRecommendedHotels
+    fun getRecommendedHotels(userAppKey: String?, cityId: String?) = repository.getRecommendedHotels(userAppKey,cityId)
+
 }

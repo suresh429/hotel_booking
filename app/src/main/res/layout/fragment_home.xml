@@ -67,7 +67,7 @@
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="@string/app_name"
+                    android:hint="@string/app_name"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/action_search"
                     app:drawableTint="@color/black" />
@@ -92,7 +92,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center_vertical"
                         android:padding="10dp"
-                        android:text="@string/checkin"
+                        android:hint="@string/checkin"
                         app:drawableStartCompat="@drawable/action_calendar_check"
                         app:drawableTint="@color/black" />
 
@@ -106,13 +106,14 @@
                         android:drawablePadding="10dp"
                         android:gravity="center_vertical"
                         android:padding="10dp"
-                        android:text="@string/checkout"
+                        android:hint="@string/checkout"
                         app:drawableStartCompat="@drawable/action_calendar_check"
                         app:drawableTint="@color/black" />
                 </LinearLayout>
 
 
                 <TextView
+                    android:id="@+id/txtFilter"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -120,12 +121,13 @@
                     android:drawablePadding="10dp"
                     android:gravity="center_vertical"
                     android:padding="10dp"
-                    android:text="@string/_1_room_2_adults_amp_0_children"
+                    android:hint="@string/_1_room_2_adults_amp_0_children"
                     android:textStyle="bold"
                     app:drawableStartCompat="@drawable/action_user"
                     app:drawableTint="@color/black" />
 
                 <Button
+                    android:id="@+id/btnSearch"
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

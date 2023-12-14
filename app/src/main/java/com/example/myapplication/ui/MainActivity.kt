@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        achievementsArray.add(HomeDataResponse("Flights",R.drawable.airplane,"https://avoota.com/index.html"))
+
+       /* achievementsArray.add(HomeDataResponse("Flights",R.drawable.airplane,"https://avoota.com/index.html"))
         achievementsArray.add(HomeDataResponse("Hotels",R.drawable.hotel,"https://avoota.com/hotel.html"))
         achievementsArray.add(HomeDataResponse("Bus",R.drawable.bus,"https://avoota.com/bus.html"))
         achievementsArray.add(HomeDataResponse("Holidays",R.drawable.holiday,"https://holidays.avoota.com/"))
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtras(bundle)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
-        }
+        }*/
 
 
         menuList.add(

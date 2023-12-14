@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_navigation_home_to_locationDialogFragment"
             app:destination="@id/locationDialogFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_filterDialogFragment"
+            app:destination="@id/filterDialogFragment" />
     </fragment>
 
     <fragment
@@ -34,6 +37,14 @@
         tools:layout="@layout/fragment_location_dialog" >
         <action
             android:id="@+id/action_locationDialogFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </dialog>
+    <dialog
+        android:id="@+id/filterDialogFragment"
+        android:name="com.example.myapplication.ui.fragments.FilterDialogFragment"
+        android:label="FilterDialogFragment" >
+        <action
+            android:id="@+id/action_filterDialogFragment_to_navigation_home"
             app:destination="@id/navigation_home" />
     </dialog>
 

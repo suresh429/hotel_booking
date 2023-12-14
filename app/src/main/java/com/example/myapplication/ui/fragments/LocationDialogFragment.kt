@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -77,6 +78,13 @@ class LocationDialogFragment : BottomSheetDialogFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        val adultCount = arguments?.getString("adultCount") ?: "1"
+        val childCount = arguments?.getString("childCount") ?: "0"
+        val roomCount = arguments?.getString("roomCount") ?: "1"
+        val checkIn = arguments?.getString("checkIn")
+        val checkOut = arguments?.getString("checkOut")
+
         binding.countryList.addItemDecoration(
             DividerItemDecoration(
                 requireContext(),
@@ -86,9 +94,15 @@ class LocationDialogFragment : BottomSheetDialogFragment() {
         binding.countryList.adapter = adapter
         adapter.onItemClick = { cityResponse, _ ->
             lifecycleScope.launch {
-
+                Log.d(TAG, "onViewCreated: ${cityResponse.city_id}")
                 val bundle = Bundle()
                 bundle.putString("cityName", cityResponse.city_name)
+                bundle.putString("cityId", cityResponse.city_id)
+                bundle.putString("adultCount", adultCount)
+                bundle.putString("childCount", childCount)
+                bundle.putString("roomCount", roomCount)
+                bundle.putString("checkIn", checkIn)
+                bundle.putString("checkOut", checkOut)
 
                 findNavController().navigate(
                     R.id.action_locationDialogFragment_to_navigation_home,

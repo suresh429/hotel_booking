@@ -5,15 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.myapplication.R
 import com.example.myapplication.databinding.CardLayoutBinding
+import com.example.myapplication.model.Data
 import com.example.myapplication.model.HomeDataResponse
-import java.util.LinkedList
 
 class HomeAdapter(
-    private var homeList: LinkedList<HomeDataResponse>
+    private var homeList: List<Data>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var onItemClick: ((Int,HomeDataResponse) -> Unit)? = null
+    var onItemClick: ((Int,Data) -> Unit)? = null
 
     override fun getItemCount(): Int {
         return homeList.size
@@ -31,13 +32,21 @@ class HomeAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemViewHolder = holder as ItemViewHolder
 
+        val data = homeList[position]
+
         itemViewHolder.viewBinding.apply {
-            txtTitle.text = homeList[position].name
-            imageView.load(homeList[position].url)
+            txtTitle.text = data.hotel_name
+            imageView.load("https://obostays.com/testdemo2/gallery/${data.id}/commonfiles/${data.hotel_pic}"){
+                crossfade(true)
+                crossfade(1000)
+                placeholder(R.drawable.app_icon)
+                error(R.drawable.app_icon)
+            }
             cardView.setOnClickListener{
                 onItemClick?.invoke(position,homeList[position])
             }
         }
+
     }
 
     override fun getItemId(position: Int): Long {
@@ -47,4 +56,5 @@ class HomeAdapter(
     override fun getItemViewType(position: Int): Int {
         return position
     }
+
 }

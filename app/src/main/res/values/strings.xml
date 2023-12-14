@@ -57,4 +57,11 @@
     <string name="checkout">Check-out</string>
     <string name="user">user</string>
     <string name="recommended_hotels">Recommended Hotels</string>
+    <string name="no_hotels_found">No Hotels Found!</string>
+    <string name="retry">Retry</string>
+    <string name="please_try_again">please try again</string>
+    <string name="adults">Adults</string>
+    <string name="children">Children</string>
+    <string name="rooms">Rooms</string>
+    <string name="done">Done</string>
 </resources>

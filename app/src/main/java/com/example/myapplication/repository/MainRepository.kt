@@ -95,12 +95,12 @@ class MainRepository @Inject constructor(private val api: ApiService,
 
     // get cities
     fun getCities(userAppKey: String?, isLaunched: String?, isPopular: String?) = result {
-        // json raw Data
-        /*val jsonObject = JsonObject()
-        jsonObject.addProperty("user_app_key", userAppKey)
-        jsonObject.addProperty("is_launched", isLaunched)
-        jsonObject.addProperty("is_popular", isPopular)*/
         api.getCities(userAppKey,isLaunched,isPopular)
+    }
+
+    // get Recommended Hotels
+    fun getRecommendedHotels(userAppKey: String?, cityId: String?) = result {
+        api.getRecommendedHotels(userAppKey,cityId)
     }
 
 }
