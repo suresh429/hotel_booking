@@ -25,11 +25,14 @@ class HotelListViewModel
         check_out_date: String?,
         adult_count: String?,
         child_count: String?,
+        latitude: String?,
+        longitude: String?,
+        hotel_star_id: String?,
         pay_at_hotel: String?,
     ): Flow<PagingData<Data>> {
 
         return Pager(config = PagingConfig(10, enablePlaceholders = false)) {
-            DonationRequestPagingList(userAppKey,cityId,check_in_date,check_out_date,adult_count,child_count,pay_at_hotel,apiService)
+            DonationRequestPagingList(userAppKey,cityId,check_in_date,check_out_date,adult_count,child_count,latitude,longitude,hotel_star_id,pay_at_hotel,apiService)
         }.flow.cachedIn(viewModelScope)
 
     }

@@ -64,4 +64,6 @@
     <string name="children">Children</string>
     <string name="rooms">Rooms</string>
     <string name="done">Done</string>
+    <string name="_2000">2000</string>
+    <string name="top_hotel">Top Hotel</string>
 </resources>

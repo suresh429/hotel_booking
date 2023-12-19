@@ -19,6 +19,9 @@ class DonationRequestPagingList(
     private val check_out_date: String?,
     private val adult_count: String?,
     private val child_count: String?,
+    private val latitude: String?,
+    private val longitude: String?,
+    private val hotel_star_id: String?,
     private val pay_at_hotel: String?,
     private val apiInterface: ApiService
 ) : PagingSource<Int, Data>() {
@@ -29,7 +32,7 @@ class DonationRequestPagingList(
         return try {
 
             // doctor list with map
-            val data: HotelsListResponse = apiInterface.getHotels(userAppKey, position, cityId, check_in_date, check_out_date, adult_count, child_count, pay_at_hotel)
+            val data: HotelsListResponse = apiInterface.getHotels(userAppKey, position, cityId, check_in_date, check_out_date, adult_count, child_count, latitude, longitude, hotel_star_id, pay_at_hotel)
 
             LoadResult.Page(
                 data = data.data,

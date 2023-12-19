@@ -9,6 +9,8 @@ import com.example.myapplication.R
 import com.example.myapplication.databinding.CardLayoutBinding
 import com.example.myapplication.model.Data
 import com.example.myapplication.model.HomeDataResponse
+import com.example.myapplication.utils.BASE_IMAGE_URL
+import com.example.myapplication.utils.COMMONFILES
 
 class HomeAdapter(
     private var homeList: List<Data>
@@ -36,7 +38,7 @@ class HomeAdapter(
 
         itemViewHolder.viewBinding.apply {
             txtTitle.text = data.hotel_name
-            imageView.load("https://obostays.com/testdemo2/gallery/${data.id}/commonfiles/${data.hotel_pic}"){
+            imageView.load("$BASE_IMAGE_URL${data.id}+$COMMONFILES+${data.hotel_pic}"){
                 crossfade(true)
                 crossfade(1000)
                 placeholder(R.drawable.app_icon)

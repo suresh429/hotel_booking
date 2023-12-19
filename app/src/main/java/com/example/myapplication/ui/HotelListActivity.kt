@@ -50,6 +50,9 @@ class HotelListActivity : AppCompatActivity() {
                     checkOutDate,
                     adultCount,
                     childCount,
+                    "",
+                    "",
+                    "",
                     "1",
                 ).collect {
                     pagingAdapter.submitData(it)

@@ -87,6 +87,9 @@ interface ApiService {
         @Field("check_out_date") check_out_date: String?,
         @Field("adult_count") adult_count: String?,
         @Field("child_count") child_count: String?,
+        @Field("latitude") latitude: String?,
+        @Field("longitude") longitude: String?,
+        @Field("hotel_star_id") hotel_star_id: String?,
         @Field("pay_at_hotel") pay_at_hotel: String?,
     ): HotelsListResponse
 

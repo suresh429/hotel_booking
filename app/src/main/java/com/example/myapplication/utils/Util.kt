@@ -44,6 +44,7 @@ import com.google.android.material.snackbar.Snackbar
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.UnsupportedEncodingException
+import java.text.DecimalFormat
 import java.text.MessageFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -301,6 +302,11 @@ fun Double.toWords(language: String, country: String): String {
         Locale(language, country)
     )
     return formatter.format(arrayOf(this))
+}
+
+fun format(amount:Double):String{
+    val numberFormat = DecimalFormat("#,###.00")
+    return numberFormat.format(amount)
 }
 
 @SuppressLint("SimpleDateFormat")

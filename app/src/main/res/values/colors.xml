@@ -14,5 +14,6 @@
     <color name="buttoncolor">#F68D37</color>
     <color name="errorcolor">#FF4D4D</color>
     <color name="transperent_black">#70000000</color>
+    <color name="layout_bg">#5BE5E5E5</color>
 
 </resources>
